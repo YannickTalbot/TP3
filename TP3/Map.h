@@ -20,6 +20,8 @@ public:
 	//Getter
 	void getSquare(int x, int y) const;
 
+	Player* getPlayer(int x, int y) const;
+
 	//Efface le contenu d'un carré
 	void deleteSquare(int x, int y);
 
@@ -43,5 +45,7 @@ public:
 
 	//retourne vrai si y a une bombe a une position donnee, faux sinon
 	bool hasBomb(int x, int y);
+
+	bool hasPlayer(int x, int y);
 };
 

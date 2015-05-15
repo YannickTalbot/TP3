@@ -8,6 +8,12 @@ Map::~Map()
 {
 }
 
+Player* Map::getPlayer(int x, int y) const
+{
+	// todo
+	return NULL;
+}
+
 bool Map::isEmpty(int x, int y)
 {
 	//todo Verifier sil y a quelque chose dans la case
@@ -34,6 +40,12 @@ bool Map::isOutOfBound(int x, int y)
 }
 
 bool Map::hasBomb(int x, int y)
+{
+	//todo
+	return false;
+}
+
+bool Map::hasPlayer(int x, int y)
 {
 	//todo
 	return false;
