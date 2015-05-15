@@ -1,0 +1,2 @@
+bombs : http://www.spriters-resource.com/resources/sheets/57/59913.png
+bomberman: http://spritedatabase.net/files/snes/529/Sprite/SBM2-Bomberman.gif
