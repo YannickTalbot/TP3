@@ -3,32 +3,51 @@
 #include "Player.h"
 #include "Bomb.h"
 #include "Fire.h"
+#include "SFML\Graphics.hpp"
+#include <vector>
 
 class Fire;
 class Player;
 class Bomb;
 
-class Map
+namespace square {
+	enum type {
+		indestructible = 2,
+		destructible = 1,
+		vide = 0
+	};
+}
+
+class Map :public sf::Drawable
 {
 private:
 	static const int _size = 10;
 
-	int _grid[_size][_size];
+	square::type _grid[_size][_size];
+
+	vector<Bomb> bombs;
 
 public:
 	Map();
 	~Map();
 
+	//Initialise la carte
+	void init();
+
 	//Getter
-	void getSquare(int x, int y) const;
+	square::type getSquare(int x, int y) const;
+
+	//Setters
+	//Ajoute un player a la position donnee
+	void setPlayer(int x, int y, Player *player);
+
+	//Place la bombe donnee 
+	void setBomb(Bomb bomb);
 
 	Player* getPlayer(int x, int y) const;
 
 	//Efface le contenu d'un carré
 	void deleteSquare(int x, int y);
-
-	//Initialise la carte
-	void init();
 
 	//retourne vrai sil ny a rien dans la case, faux sinon
 	bool isEmpty(int x, int y);
@@ -62,5 +81,7 @@ public:
 
 	//retourne vrai si y a un wall destructible a la position donnee, faux sinon
 	bool hasBreakableWall(int x, int y);
-};
 
+	//Dessine la map
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+};

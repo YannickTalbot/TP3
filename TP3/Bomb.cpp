@@ -15,6 +15,11 @@ Bomb::~Bomb()
 {
 }
 
+sf::Image* Bomb::getImage() const
+{
+	return _image;
+}
+
 void Bomb::tick()
 {
 	if (_fuse == 0)

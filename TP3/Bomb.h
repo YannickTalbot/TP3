@@ -10,7 +10,7 @@ using namespace std;
 class Map;
 class Player;
 
-class Bomb
+class Bomb 
 {
 private:
 	Position _position;
@@ -27,9 +27,12 @@ public:
 	Bomb(sf::Image* image, Player* player, int power, Map* map);
 	~Bomb();
 
+	sf::Image* getImage() const;
+
 	//la fuse a brule
 	void tick();
 
 	bool hasExploded();
+
 };
 
