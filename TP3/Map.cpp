@@ -145,9 +145,11 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 		}
 	}
 
-	for (int i = 0; i < bombs.size(); i++)
-	{
-		sf::Sprite sprite(bombs[i].getImage);
-		sprite.setScale(imgScale * bombScale * resHorizontal, imgScale * bombScale * resVertical);
-	}
+	//for (int i = 0; i < bombs.size(); i++)
+	//{
+	//	sf::Sprite sprite;
+	//	sprite.setTexture(*bombs[i].getImage())
+
+	//	sprite.setScale(imgScale * bombScale * resHorizontal, imgScale * bombScale * resVertical);
+	//}
 }
