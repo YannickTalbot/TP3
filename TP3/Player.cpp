@@ -80,3 +80,8 @@ void Player::moveTo(int x, int y)
 		_map->setPlayer(_position._x, _position._y, this);
 	}
 }
+
+void Player::notifyBombExploded()
+{
+	_bombsInPlay--;
+}

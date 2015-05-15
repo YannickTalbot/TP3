@@ -73,4 +73,6 @@ void Bomb::explode()
 	drawFireLine(dimensionX, -1);
 	drawFireLine(dimensionY, 1);
 	drawFireLine(dimensionY, -1);
+
+	_player->notifyBombExploded();
 }
