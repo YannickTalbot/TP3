@@ -1,15 +1,22 @@
 #include "Player.h"
 
 
-Player::Player(Position initialPosition, Map *map)
+Player::Player(Position initialPosition, Map *map, 
+	sf::Image upImage, sf::Image downImage,
+	sf::Image leftImage, sf::Image rightImage)
 {
 	_map = map;
 	_initialPosition = initialPosition;
 	_position = initialPosition;
 	_lives = 3;
 	_bombsInPlay = 0; // bombe dans le world
-	//todo initialise : bomb image, direction image,
 	resetStats();
+
+	_currentDirection = DOWN;
+	_directionImages[UP] = upImage;
+	_directionImages[DOWN] = downImage;
+	_directionImages[LEFT] = leftImage;
+	_directionImages[RIGHT] = rightImage;
 }
 
 void Player::resetStats()
@@ -53,21 +60,25 @@ void Player::placeBomb()
 void Player::moveUp()
 {
 	moveTo(_position._x, _position._y - 1);
+	_currentDirection = UP;
 }
 
 void Player::moveDown()
 {
 	moveTo(_position._x, _position._y + 1);
+	_currentDirection = DOWN;
 }
 
 void Player::moveLeft()
 {
 	moveTo(_position._x -1, _position._y);
+	_currentDirection = LEFT;
 }
 
 void Player::moveRight()
 {
 	moveTo(_position._x +1, _position._y);
+	_currentDirection = RIGHT;
 }
 
 void Player::moveTo(int x, int y)
@@ -84,4 +95,9 @@ void Player::moveTo(int x, int y)
 void Player::notifyBombExploded()
 {
 	_bombsInPlay--;
+}
+
+sf::Image& Player::getImage()
+{
+	return _directionImages[_currentDirection];
 }
