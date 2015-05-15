@@ -3,6 +3,8 @@
 #include "Position.h"
 #include "Map.h"
 
+class Map;
+
 class Fire
 {
 private:

@@ -24,12 +24,22 @@ void Map::removePlayer(int x, int y)
 	//todo
 }
 
+void Map::removeBreakableWall(int x, int y)
+{
+	//todo
+}
+
 void Map::setPlayer(int x, int y, Player *player)
 {
 	//todo
 }
 
 void Map::setBomb(int x, int y, Bomb bomb)
+{
+	//todo
+}
+
+void Map::setFire(int x, int y, Fire fire)
 {
 	//todo
 }
@@ -46,6 +56,18 @@ bool Map::hasBomb(int x, int y)
 }
 
 bool Map::hasPlayer(int x, int y)
+{
+	//todo
+	return false;
+}
+
+bool Map::hasUnbreakableWall(int x, int y)
+{
+	//todo
+	return false;
+}
+
+bool Map::hasBreakableWall(int x, int y)
 {
 	//todo
 	return false;

@@ -44,7 +44,7 @@ void Player::placeBomb()
 	if (_bombsInPlay < _maxBombsInPlay && !_map->hasBomb(_position._x,_position._y))
 	{
 		_bombsInPlay++;
-		Bomb bomb(&_bombImage, this, _power);
+		Bomb bomb(&_bombImage, this, _power, _map);
 		_map->setBomb(_position._x, _position._y, bomb);
 
 	}
