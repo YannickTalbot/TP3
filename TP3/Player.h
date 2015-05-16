@@ -13,22 +13,38 @@ class Map;
 class Player
 {
 private:
+	enum Direction
+	{
+		UP = 0,
+		DOWN = 1,
+		LEFT = 2,
+		RIGHT = 3
+	};
+
 	Position _position;
 	Position _initialPosition;
+
 	Map	*_map;
-	int _directionImg;
+
+	sf::Image _directionImages[4];
+	enum Direction _currentDirection;
+
+	sf::Image _bombImage;
+	
 	int _lives;
 	int _speed;
 	int _power;
+
 	int _maxBombsInPlay;	//how many at once
-	sf::Image _bombImage;
-	
 	int _bombsInPlay;
 
 	void moveTo(int x, int y);
 	void resetStats();
 public:
-	Player(Position initialPosition, Map *map);
+	Player(Position initialPosition, Map *map, 
+		sf::Image upImage, sf::Image downImage, 
+		sf::Image leftImage, sf::Image rightImage);
+
 	~Player();
 
 	void kill();
@@ -39,5 +55,9 @@ public:
 	void moveDown();
 	void moveLeft();
 	void moveRight();
+
+	void notifyBombExploded();
+
+	sf::Image& getImage();
 };
 

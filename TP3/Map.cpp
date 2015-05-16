@@ -9,6 +9,18 @@ Map::~Map()
 {
 }
 
+Player* Map::getPlayer(int x, int y) const
+{
+	// todo
+	return NULL;
+}
+
+bool Map::isEmpty(int x, int y)
+{
+	//todo Verifier sil y a quelque chose dans la case
+	return false;
+}
+
 //Initialise la map avec les valeurs de base
 void Map::init()
 {
@@ -47,6 +59,11 @@ square::type Map::getSquare(int x, int y) const
 	return _grid[x][y];
 }
 
+void Map::removeBreakableWall(int x, int y)
+{
+	//todo
+}
+
 void Map::setPlayer(int x, int y, Player *player)
 {
 	//todo
@@ -71,6 +88,11 @@ bool Map::isEmpty(int x, int y)
 	return false;
 }
 void Map::removePlayer(int x, int y)
+{
+	//todo
+}
+
+void Map::setFire(int x, int y, Fire fire)
 {
 	//todo
 }
@@ -152,4 +174,22 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 	//	sprite.setScale(imgScale * bombScale * resHorizontal, imgScale * bombScale * resVertical);
 	//}
+}
+
+bool Map::hasPlayer(int x, int y)
+{
+	//todo
+	return false;
+}
+
+bool Map::hasUnbreakableWall(int x, int y)
+{
+	//todo
+	return false;
+}
+
+bool Map::hasBreakableWall(int x, int y)
+{
+	//todo
+	return false;
 }
