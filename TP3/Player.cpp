@@ -1,5 +1,6 @@
 #include "Player.h"
 
+Player::Player() {}
 
 Player::Player(Position initialPosition, Map *map, 
 	sf::Image upImage, sf::Image downImage,
@@ -52,7 +53,8 @@ void Player::placeBomb()
 	{
 		_bombsInPlay++;
 		Bomb bomb(&_bombImage, this, _power, _map);
-		_map->setBomb(_position._x, _position._y, bomb);
+		//setBomb utilise les coordonnées de getPosition de la bombe
+		_map->setBomb(/*_position._x, _position._y*/ bomb);
 
 	}
 }

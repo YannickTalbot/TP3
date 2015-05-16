@@ -2,10 +2,13 @@
 =============================*/
 #include "Bomberman.h"
 #include "Menu.h"
+#include <iostream>
+
 
 void main()
 {
-	sf::RenderWindow App(sf::VideoMode(800, 600), "SFML window");
+	Bomberman bomberman;
+
 
 	system("pause");
 

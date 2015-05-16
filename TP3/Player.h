@@ -41,6 +41,8 @@ private:
 	void moveTo(int x, int y);
 	void resetStats();
 public:
+	Player(); //Constructeur vide temporaire
+
 	Player(Position initialPosition, Map *map, 
 		sf::Image upImage, sf::Image downImage, 
 		sf::Image leftImage, sf::Image rightImage);

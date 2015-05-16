@@ -34,5 +34,7 @@ public:
 
 	bool hasExploded();
 
+	Position getPosition() const;
+
 };
 

@@ -81,3 +81,8 @@ void Bomb::explode()
 
 	_player->notifyBombExploded();
 }
+
+Position Bomb::getPosition() const
+{
+	return _position;
+}

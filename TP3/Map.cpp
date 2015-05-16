@@ -9,16 +9,41 @@ Map::~Map()
 {
 }
 
-Player* Map::getPlayer(int x, int y) const
+//Wrong place?////////////////////////////////////////////////////////
+//Je placerais tous les players dans bomberman.cpp, vu qu'ils sont déja storé la
+Player* Map::getPlayer(const int x, const int y) const
 {
 	// todo
 	return NULL;
 }
 
-bool Map::isEmpty(int x, int y)
+void Map::setPlayer(const int x, const int y, Player *player)
 {
-	//todo Verifier sil y a quelque chose dans la case
+	//todo
+}
+
+void Map::removePlayer(const int x, const int y)
+{
+	//todo
+}
+
+bool Map::hasPlayer(const int x, const int y) const
+{
+	//todo
 	return false;
+}
+
+
+//Pourquoi on a pas une méthode draw dans bombs.cpp a la place?
+void Map::setFire(const int x, const int y, const Fire fire)
+{
+	//todo
+}
+///////////////////////////////////////////////////////////////////
+
+bool Map::isEmpty(const int x, const int y) const
+{
+	return _grid[x][y] == square::vide;
 }
 
 //Initialise la map avec les valeurs de base
@@ -51,61 +76,46 @@ void Map::init()
 }
 
 //Getter
-square::type Map::getSquare(int x, int y) const
+square::type Map::getSquare(const int x, const int y) const
 {
-	if (x >= _size || y >= _size)
-		throw std::invalid_argument("Le carré à un index trop grand!");
+	if (isOutOfBound(x,y))
+		throw std::invalid_argument("Le carré à un index invalide!");
 
 	return _grid[x][y];
 }
 
-void Map::removeBreakableWall(int x, int y)
+//Détruit un mur s'il est destructible, sinon cause une erreur
+void Map::removeBreakableWall(const int x, const int y)
 {
-	//todo
-}
-
-void Map::setPlayer(int x, int y, Player *player)
-{
-	//todo
-}
-
-void Map::setBomb(Bomb bomb)
-{
-	bombs.push_back(bomb);
-}
-
-void Map::deleteSquare(int x, int y)
-{
-	if (_grid[x][y] == square::indestructible || isOutOfBound(x,y))
-		throw std::invalid_argument("Le carré est indestructible");
-
+	if (isOutOfBound(x,y) || _grid[x][y] != square::destructible)
+		throw std::invalid_argument("Le carré n'est pas destructible");
+	
 	_grid[x][y] = square::vide;
 }
 
-bool Map::isEmpty(int x, int y)
+//Ajoute une bombe dans le vecteur bombs
+void Map::setBomb(const Bomb bomb)
 {
-	//todo Verifier sil y a quelque chose dans la case
-	return false;
-}
-void Map::removePlayer(int x, int y)
-{
-	//todo
+	_bombs.push_back(bomb);
 }
 
-void Map::setFire(int x, int y, Fire fire)
-{
-	//todo
-}
-
-bool Map::isOutOfBound(int x, int y)
+//Vérifie si les coordonnées sont valide
+bool Map::isOutOfBound(const int x, const int y) const
 {
 	return x < 0 || y < 0 || x >= _size || y >= _size;
 }
 
-bool Map::hasBomb(int x, int y)
+//Vérifie si il y a une bombe aux coordonées données
+bool Map::hasBomb(const int x, const int y) const
 {
-	//todo
-	return false;
+	bool bomb = false;
+
+	for (int i = 0; i < _bombs.size(); i++)
+		if (_bombs[i].getPosition()._x == x &&
+			_bombs[i].getPosition()._y == y)
+			bomb = true;
+
+	return bomb;
 }
 
 //Dessine la map sur un rendertarget
@@ -113,7 +123,7 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	//La grosseur finale de l'image sur un axe est donnée par imgSize * imgScale * res. 
 	const int	imgSize = 30;			//Format de l'image sur la texture
-	float		imgScale = .1602;		//Multiplicateur de la grosseur
+	double		imgScale = .1602;		//Multiplicateur de la grosseur
 	int			resVertical = 9;		//Multiplicateur de la résolution pour les y
 	int			resHorizontal = 16;		//Multiplicateur de la résolution pour les x
 	float		bombScale = 1;			//TODO
@@ -159,37 +169,21 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 			}
 
 			//Positionnement du sprite
-			sprite.setScale(imgScale * resHorizontal, imgScale * resVertical);
-			sprite.setPosition(imgSize * i * imgScale * resHorizontal, imgSize * j * imgScale * resVertical);
+			sprite.setScale((float)imgScale * resHorizontal, (float)imgScale * resVertical);
+			sprite.setPosition(imgSize * i * (float)imgScale * resHorizontal, imgSize * j * (float)imgScale * resVertical);
 
 			//Dessin
 			target.draw(sprite);
 		}
 	}
-
-	//for (int i = 0; i < bombs.size(); i++)
-	//{
-	//	sf::Sprite sprite;
-	//	sprite.setTexture(*bombs[i].getImage())
-
-	//	sprite.setScale(imgScale * bombScale * resHorizontal, imgScale * bombScale * resVertical);
-	//}
 }
 
-bool Map::hasPlayer(int x, int y)
+bool Map::hasUnbreakableWall(const int x, const int y) const
 {
-	//todo
-	return false;
+	return _grid[x][y] == square::indestructible;
 }
 
-bool Map::hasUnbreakableWall(int x, int y)
+bool Map::hasBreakableWall(const int x, const int y) const
 {
-	//todo
-	return false;
-}
-
-bool Map::hasBreakableWall(int x, int y)
-{
-	//todo
-	return false;
+	return _grid[x][y] == square::destructible;
 }
