@@ -83,7 +83,7 @@ void Player::moveRight()
 	_currentDirection = RIGHT;
 }
 
-void Player::moveTo(int x, int y)
+void Player::moveTo(const int x, const int y)
 {
 	if (!_map->isOutOfBound(x, y) && _map->isEmpty(x, y))
 	{

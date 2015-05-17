@@ -7,8 +7,12 @@
 
 void main()
 {
-	Bomberman bomberman;
-
+	sf::RenderWindow window;
+	sf::VideoMode mode(1000, 600);
+	Map map;
+	window.create(mode, "BOOOOOOM!", sf::Style::Resize | sf::Style::Close);
+	window.draw(map);
+	window.display();
 
 	system("pause");
 
