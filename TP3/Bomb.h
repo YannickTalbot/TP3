@@ -24,6 +24,7 @@ private:
 	void drawFireLine(function<int&(Position&)> dimension, int direction);
 
 public:
+	Bomb();
 	Bomb(sf::Image* image, Player* player, int power, Map* map);
 	~Bomb();
 
