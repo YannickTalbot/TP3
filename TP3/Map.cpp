@@ -71,8 +71,6 @@ void Map::init()
 		_grid[_size - 2 - i][1] = _grid[_size - 2][i + 1] =	//Coin haut-droit
 		_grid[_size - 2 - i][_size - 2] = _grid[_size - 2][_size - 2 - i] =	//Coin bas-droit
 		square::vide;
-
-	_grid[5][4] = square::vide;
 }
 
 //Getter
@@ -121,6 +119,11 @@ bool Map::hasBomb(const int x, const int y) const
 //Dessine la map sur un rendertarget
 void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
+	ScaleInfo scale;
+	scale.resHorizontal = 16;
+	scale.resVertical = 9;
+	scale.targetWidth = 75;
+
 	//La grosseur finale de l'image sur un axe est donnée par imgSize * imgScale * res. 
 	const int	imgSize = 30;			//Format de l'image sur la texture
 	double		imgScale = .1602;		//Multiplicateur de la grosseur
