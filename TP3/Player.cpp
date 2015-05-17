@@ -3,8 +3,8 @@
 Player::Player() {}
 
 Player::Player(Position initialPosition, Map *map, 
-	sf::Image upImage, sf::Image downImage,
-	sf::Image leftImage, sf::Image rightImage)
+	sf::Texture upImage, sf::Texture downImage,
+	sf::Texture leftImage, sf::Texture rightImage)
 {
 	_map = map;
 	_initialPosition = initialPosition;
@@ -99,7 +99,7 @@ void Player::notifyBombExploded()
 	_bombsInPlay--;
 }
 
-sf::Image& Player::getImage()
+sf::Texture& Player::getImage()
 {
 	return _directionImages[_currentDirection];
 }
