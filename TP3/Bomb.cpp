@@ -2,7 +2,7 @@
 #include "Fire.h"
 #include <SFML\Graphics.hpp>
 
-Bomb::Bomb(sf::Image *image, Player* player, int power, Map* map)
+Bomb::Bomb(sf::Texture *image, Player* player, int power, Map* map)
 {
 	_player = player;
 	_image = image;
@@ -15,7 +15,7 @@ Bomb::~Bomb()
 {
 }
 
-sf::Image* Bomb::getImage() const
+sf::Texture* Bomb::getImage() const
 {
 	return _image;
 }
