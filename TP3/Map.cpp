@@ -122,7 +122,7 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	ScaleInfo scale;
 	scale.resHorizontal = 16;
 	scale.resVertical = 9;
-	scale.targetWidth = 75;
+	scale.targetSize = 78;
 
 	//La grosseur finale de l'image sur un axe est donnée par imgSize * imgScale * res. 
 	const int	imgSize = 30;			//Format de l'image sur la texture
@@ -172,7 +172,7 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 			}
 
 			//Positionnement du sprite
-			sprite.setScale((float)imgScale * resHorizontal, (float)imgScale * resVertical);
+			scale.set(sprite);
 			sprite.setPosition(imgSize * i * (float)imgScale * resHorizontal, imgSize * j * (float)imgScale * resVertical);
 
 			//Dessin
