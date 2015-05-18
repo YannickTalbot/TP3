@@ -60,7 +60,7 @@ public:
 
 	void notifyBombExploded();
 
-	void draw(sf::RenderTarget& target) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states);
 	//sf::Sprite& getImage();
 };
 
