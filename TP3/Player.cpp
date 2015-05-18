@@ -2,22 +2,30 @@
 
 Player::Player() {}
 
-Player::Player(Position initialPosition, Map *map, 
-	sf::Sprite upImage, sf::Sprite downImage,
-	sf::Sprite leftImage, sf::Sprite rightImage)
+Player::Player(Position initialPosition, Map *map, sf::Texture &texture)
 {
 	_map = map;
+	_currentDirection = DOWN;
 	_initialPosition = initialPosition;
 	_position = initialPosition;
 	_lives = 3;
 	_bombsInPlay = 0; // bombe dans le world
 	resetStats();
 
-	_currentDirection = DOWN;
-	_directionImages[UP] = upImage;
-	_directionImages[DOWN] = downImage;
-	_directionImages[LEFT] = leftImage;
-	_directionImages[RIGHT] = rightImage;
+	for (int i = 0; i < 12; i++)
+	{
+		_directionImages[i / 4][i % 3].setTexture(texture);
+	}
+
+	//Les sprites font 16X32
+	for (int i = 0; i < 3; i++)
+	{
+		//Positionne les rectangles dans les sprites
+		_directionImages[UP][i].setTextureRect(sf::IntRect(0 * 54 + 18 * i, 0, 17, 32));
+		_directionImages[DOWN][i].setTextureRect(sf::IntRect(2 * 54 + 18 * i, 0, 17, 32));
+		_directionImages[LEFT][i].setTextureRect(sf::IntRect(3 * 54 + 18 * i, 0, 17, 32));
+		_directionImages[RIGHT][i].setTextureRect(sf::IntRect(1 * 54 + 18 * i, 0, 17, 32));
+	}
 }
 
 //remet les stats de depart du players
@@ -94,13 +102,16 @@ void Player::moveRight()
 //fonction primaire pour bouger dans la map
 void Player::moveTo(const int x, const int y)
 {
-	if (!_map->isOutOfBound(x, y) && _map->isEmpty(x, y))
+	/*if (!_map->isOutOfBound(x, y) && _map->isEmpty(x, y))
 	{
 		_map->removePlayer(_position._x, _position._y);
 		_position._x = x;
 		_position._y = y;
 		_map->setPlayer(_position._x, _position._y, this);
-	}
+	}*/
+
+	if (++_step == 3)
+		_step = 0;
 }
 
 //notifie quand une bombe explose et decremente les bombs en jeu
@@ -110,8 +121,9 @@ void Player::notifyBombExploded()
 }
 
 //dessine le player
-void Player::draw(sf::RenderTarget& target, sf::RenderStates states)
+void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	_directionImages[_currentDirection].setPosition((float)_position._x, (float)_position._y);
-	target.draw(_directionImages[_currentDirection]);
+	sf::Sprite sprite = _directionImages[_currentDirection][_step];
+	sprite.setPosition((float)25,(float)25);
+	target.draw(sprite);
 }

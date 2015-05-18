@@ -10,7 +10,7 @@ using namespace std;
 
 class Map;
 
-class Player
+class Player:public sf::Drawable
 {
 private:
 	enum Direction
@@ -26,7 +26,7 @@ private:
 
 	Map	*_map;
 
-	sf::Sprite _directionImages[4];
+	sf::Sprite _directionImages[4][3];
 	enum Direction _currentDirection;
 
 	sf::Sprite _bombImage;
@@ -37,15 +37,14 @@ private:
 
 	int _maxBombsInPlay;	//how many at once
 	int _bombsInPlay;
+	int _step = 0;
 
 	void moveTo(const int x, const int y);
 	void resetStats();
 public:
 	Player(); //Constructeur vide 
 
-	Player(Position initialPosition, Map *map, 
-		sf::Sprite upImage, sf::Sprite downImage,
-		sf::Sprite leftImage, sf::Sprite rightImage);
+	Player(Position initialPosition, Map *map, sf::Texture &texture);
 
 	~Player();
 
@@ -60,7 +59,7 @@ public:
 
 	void notifyBombExploded();
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states);
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	//sf::Sprite& getImage();
 };
 
