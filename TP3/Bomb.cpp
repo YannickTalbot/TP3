@@ -60,7 +60,7 @@ void Bomb::drawFireLine(function<int&(Position&)> dimension, int direction)
 			break;
 		}
 
-		_map->setFire(p._x, p._y, Fire(p, _map));
+		//_map->setFire(p._x, p._y, Fire(p, _map));
 	}
 }
 
@@ -76,8 +76,6 @@ int& dimensionY(Position& p)
 
 void Bomb::explode()
 {
-	_map->setFire(_position._x, _position._y, Fire(_position, _map));
-
 	drawFireLine(dimensionX, 1);
 	drawFireLine(dimensionX, -1);
 	drawFireLine(dimensionY, 1);

@@ -10,7 +10,7 @@ using namespace std;
 class Map;
 class Player;
 
-class Bomb 
+class Bomb :public sf::Drawable
 {
 private:
 	Position _position;
