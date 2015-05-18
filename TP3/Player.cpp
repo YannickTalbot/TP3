@@ -2,7 +2,7 @@
 
 Player::Player() {}
 
-Player::Player(Position initialPosition, Map *map, sf::Texture &texture)
+Player::Player(Position initialPosition, Map *map, sf::Texture &texture, ScaleInfo *scale)
 {
 	_map = map;
 	_currentDirection = DOWN;
@@ -11,6 +11,7 @@ Player::Player(Position initialPosition, Map *map, sf::Texture &texture)
 	_lives = 3;
 	_bombsInPlay = 0; // bombe dans le world
 	resetStats();
+	_scale = scale;
 
 	for (int i = 0; i < 12; i++)
 	{
@@ -124,6 +125,6 @@ void Player::notifyBombExploded()
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	sf::Sprite sprite = _directionImages[_currentDirection][_step];
-	sprite.setPosition((float)25,(float)25);
+	_scale->set(sprite, sf::Vector2i(_position._x, _position._y));
 	target.draw(sprite);
 }

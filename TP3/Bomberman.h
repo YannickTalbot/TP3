@@ -12,7 +12,8 @@ private:
 	Map _map;
 	vector<Player> _player;
 	sf::RenderWindow _window;
-	
+	sf::Texture _playerTexture;
+
 	int _nbPlayer;
 public:
 	//Constructeurs 
@@ -24,7 +25,7 @@ public:
 	void init();
 
 	//Création de joueurs
-	void createPlayer();
+	void createPlayer(Position initialPosition, Map *map, sf::Texture &texture);
 
 	//Boucle de jeu principal
 	void play();

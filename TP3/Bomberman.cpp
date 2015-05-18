@@ -11,6 +11,9 @@ Bomberman::Bomberman()
 	_scale.resHorizontal = 16;
 	_scale.resVertical = 9;
 	_scale.targetSize = 1000/13;	//Map de 13X13, écran de 1000x565
+
+	_playerTexture.loadFromFile("./Images/Bomberman.gif");
+
 	init();
 }
 
@@ -24,16 +27,16 @@ void Bomberman::init()
 	_window.draw(_map);
 
 	//Crée deux joueurs
-	createPlayer();
-	createPlayer();
+	createPlayer(Position(1,1,20), &_map, _playerTexture);
+	createPlayer(Position(12, 12, 20), &_map, _playerTexture);
 
 
 }
 
 //Crée des players
-void Bomberman::createPlayer()
+void Bomberman::createPlayer(Position initialPosition, Map *map, sf::Texture &texture)
 {
-	_player.push_back(Player());
+	_player.push_back(Player(initialPosition, map, texture, &_scale));
 }
 
 //Commence la partie

@@ -20,7 +20,7 @@ void main()
 	window.create(mode, "BOOOOOOM!", sf::Style::Resize | sf::Style::Close);
 	window.draw(map);
 
-	Player player(Position(), &map, texture);
+	Player player(Position(1,1,20), &map, texture, &_scale);
 	window.draw(player);
 
 	window.display();

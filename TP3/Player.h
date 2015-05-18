@@ -5,6 +5,7 @@
 #include <vector>
 #include <SFML\Graphics.hpp>
 #include "Map.h"
+#include "ScaleInfo.h"
 
 using namespace std;
 
@@ -20,6 +21,8 @@ private:
 		LEFT = 2,
 		RIGHT = 3
 	};
+
+	ScaleInfo *_scale;
 
 	Position _position;
 	Position _initialPosition;
@@ -44,7 +47,7 @@ private:
 public:
 	Player(); //Constructeur vide 
 
-	Player(Position initialPosition, Map *map, sf::Texture &texture);
+	Player(Position initialPosition, Map *map, sf::Texture &texture, ScaleInfo *_scale);
 
 	~Player();
 
