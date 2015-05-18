@@ -2,15 +2,19 @@
 #include "Map.h"
 #include "Player.h"
 #include <vector>
+#include <memory>
 #include <SFML\Window.hpp>
+
 using namespace std;
 
-class Bomberman
+class Bomberman :public sf::Drawable
 {
 private:
 	ScaleInfo _scale;
 	Map _map;
-	vector<Player> _player;
+
+	vector<unique_ptr<Player>> _player;
+	vector<Bomb> _bombs;
 	sf::RenderWindow _window;
 	sf::Texture _playerTexture;
 
@@ -25,8 +29,10 @@ public:
 	void init();
 
 	//Création de joueurs
-	void createPlayer(Position initialPosition, Map *map, sf::Texture &texture);
+	void createPlayer(Position initialPosition);
 
 	//Boucle de jeu principal
 	void play();
+
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 };
