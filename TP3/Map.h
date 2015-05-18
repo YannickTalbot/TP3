@@ -5,6 +5,7 @@
 #include "Fire.h"
 #include "SFML\Graphics.hpp"
 #include <vector>
+#include "scaleInfo.h"
 
 class Fire;
 class Player;
@@ -21,7 +22,7 @@ namespace square {
 class Map :public sf::Drawable
 {
 private:
-	static const int _size = 13;
+	static const int _size = 13;	
 
 	square::type _grid[_size][_size];
 
