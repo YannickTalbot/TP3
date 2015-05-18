@@ -172,8 +172,7 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 			}
 
 			//Positionnement du sprite
-			scale.set(sprite);
-			sprite.setPosition(imgSize * i * (float)imgScale * resHorizontal, imgSize * j * (float)imgScale * resVertical);
+			scale.set(sprite, sf::Vector2i(i, j));
 
 			//Dessin
 			target.draw(sprite);

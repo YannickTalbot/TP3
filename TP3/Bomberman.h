@@ -8,6 +8,7 @@ using namespace std;
 class Bomberman
 {
 private:
+	ScaleInfo _scale;
 	Map _map;
 	vector<Player> _player;
 	sf::RenderWindow _window;

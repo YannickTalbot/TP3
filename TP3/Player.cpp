@@ -115,8 +115,3 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states)
 	_directionImages[_currentDirection].setPosition((float)_position._x, (float)_position._y);
 	target.draw(_directionImages[_currentDirection]);
 }
-//sf::Sprite& Player::getImage()
-//{
-//	return _directionImages[_currentDirection];
-//}
-//blablablala

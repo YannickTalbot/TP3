@@ -28,8 +28,10 @@ private:
 
 	std::vector<Bomb> _bombs;
 
+	ScaleInfo *_scale;
 public:
 	Map();
+	Map(ScaleInfo scale);
 	~Map();
 
 	//Initialise la carte

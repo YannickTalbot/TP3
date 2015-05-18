@@ -41,7 +41,7 @@ private:
 	void moveTo(const int x, const int y);
 	void resetStats();
 public:
-	Player(); //Constructeur vide temporaire
+	Player(); //Constructeur vide 
 
 	Player(Position initialPosition, Map *map, 
 		sf::Sprite upImage, sf::Sprite downImage,

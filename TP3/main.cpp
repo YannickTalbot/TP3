@@ -9,10 +9,15 @@ void main()
 {
 	sf::RenderWindow window;
 	sf::VideoMode mode(1000, 600);
-	Map map;
+	ScaleInfo _scale;
+	_scale.resHorizontal = 16;
+	_scale.resVertical = 9;
+	_scale.targetSize = 78;
+	Map map/*_scale*/;
 	window.create(mode, "BOOOOOOM!", sf::Style::Resize | sf::Style::Close);
 	window.draw(map);
 	window.display();
 
 	system("pause");
+
 }

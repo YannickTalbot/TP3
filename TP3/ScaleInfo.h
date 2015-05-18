@@ -8,7 +8,8 @@ struct ScaleInfo {
 	int			resVertical;		//Multiplicateur de la résolution pour les y
 	int			resHorizontal;		//Multiplicateur de la résolution pour les x
 
-	void set(sf::Sprite &sprite) const
+	//Ajuste les proportions pour que l'image finale aie la taille désirée
+	void setScale(sf::Sprite &sprite) const
 	{
 		//Formule pour les multiplicateur
 		//targetSize = scale * texturerect
@@ -20,4 +21,18 @@ struct ScaleInfo {
 		sprite.setScale(hScale, vScale);
 	}
 
+	//Positionne un objet selon ses coordonnées sur la map. Setter le scale avant de positionner
+	void setPosition(sf::Sprite &sprite, const sf::Vector2i position) const
+	{
+		float x = sprite.getTextureRect().width * sprite.getScale().x * position.x;
+		float y = sprite.getTextureRect().height * sprite.getScale().y * position.y;
+		sprite.setPosition(x, y);
+	}
+
+	//Set le scale et la position
+	void set(sf::Sprite &sprite, const sf::Vector2i position) const
+	{
+		setScale(sprite);
+		setPosition(sprite, position);
+	}
 };
