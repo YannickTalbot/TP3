@@ -2,6 +2,7 @@
 #include "Fire.h"
 #include <SFML\Graphics.hpp>
 
+//Constructeurs
 Bomb::Bomb(sf::Sprite *image, Player* player, int power, Map* map)
 {
 	_player = player;
@@ -15,11 +16,13 @@ Bomb::~Bomb()
 {
 }
 
+//Getter
 sf::Sprite* Bomb::getImage() const
 {
 	return _image;
 }
 
+//le temps de la bombe avant qu'elle explose
 void Bomb::tick()
 {
 	if (_fuse == 0)
@@ -32,6 +35,7 @@ void Bomb::tick()
 	}
 }
 
+//indicateur si la bombe a exploser
 bool Bomb::hasExploded()
 {
 	return _fuse == 0;
@@ -89,5 +93,4 @@ Position Bomb::getPosition() const
 
 void Bomb::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-
 }

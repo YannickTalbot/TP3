@@ -12,6 +12,7 @@ Fire::~Fire()
 
 }
 
+//Le temps du feu sur la map
 void Fire::tick()
 {
 	if (!isDone())
@@ -24,6 +25,7 @@ void Fire::tick()
 	}
 }
 
+//demande si le feu a fini de tick
 bool Fire::isDone()
 {
 	return _timeLeft == 0;

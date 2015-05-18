@@ -20,6 +20,7 @@ Player::Player(Position initialPosition, Map *map,
 	_directionImages[RIGHT] = rightImage;
 }
 
+//remet les stats de depart du players
 void Player::resetStats()
 {
 	_speed = 1;
@@ -31,6 +32,7 @@ Player::~Player()
 {
 }
 
+//fonction quand un player se fait tuer
 void Player::kill()
 {
 	if (_lives < 1)
@@ -47,6 +49,7 @@ void Player::kill()
 
 }
 
+//Fonction pour placer une bombe dans la map
 void Player::placeBomb()
 {
 	if (_bombsInPlay < _maxBombsInPlay && !_map->hasBomb(_position._x,_position._y))
@@ -59,6 +62,7 @@ void Player::placeBomb()
 	}
 }
 
+//fonction pour bouger en haut
 void Player::moveUp()
 {
 	moveTo(_position._x, _position._y - 1);
@@ -66,24 +70,28 @@ void Player::moveUp()
 	
 }
 
+//fonction pour bouger en bas
 void Player::moveDown()
 {
 	moveTo(_position._x, _position._y + 1);
 	_currentDirection = DOWN;
 }
 
+//fonction pour bouger a gauche
 void Player::moveLeft()
 {
 	moveTo(_position._x -1, _position._y);
 	_currentDirection = LEFT;
 }
 
+//fonction pour bouger a droite
 void Player::moveRight()
 {
 	moveTo(_position._x +1, _position._y);
 	_currentDirection = RIGHT;
 }
 
+//fonction primaire pour bouger dans la map
 void Player::moveTo(const int x, const int y)
 {
 	if (!_map->isOutOfBound(x, y) && _map->isEmpty(x, y))
@@ -95,11 +103,13 @@ void Player::moveTo(const int x, const int y)
 	}
 }
 
+//notifie quand une bombe explose et decremente les bombs en jeu
 void Player::notifyBombExploded()
 {
 	_bombsInPlay--;
 }
 
+//dessine le player
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states)
 {
 	_directionImages[_currentDirection].setPosition((float)_position._x, (float)_position._y);
@@ -109,4 +119,4 @@ void Player::draw(sf::RenderTarget& target, sf::RenderStates states)
 //{
 //	return _directionImages[_currentDirection];
 //}
-//blablablal
+//blablablala

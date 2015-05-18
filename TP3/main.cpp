@@ -15,5 +15,4 @@ void main()
 	window.display();
 
 	system("pause");
-
 }
