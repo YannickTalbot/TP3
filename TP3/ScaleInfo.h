@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "Position.h"
 
 //
 struct ScaleInfo {
@@ -7,10 +8,16 @@ struct ScaleInfo {
 	int			resVertical;		//Multiplicateur de la résolution pour les y
 	int			resHorizontal;		//Multiplicateur de la résolution pour les x
 
-	void setScale(sf::Sprite &sprite) const
+	void set(sf::Sprite &sprite) const
 	{
+		//Formule pour les multiplicateur
+		//targetSize = scale * texturerect
+		//mult = targetSize  / textureRect
+
 		float hScale = targetSize / sprite.getTextureRect().width;
-		float vScale = targetSize / sprite.getTextureRect().height;
-		sprite.setScale(hScale * resHorizontal, (float)imgScale * resVertical);
+		float vScale = targetSize / sprite.getTextureRect().height * resVertical / resHorizontal;
+
+		sprite.setScale(hScale, vScale);
 	}
+
 };
