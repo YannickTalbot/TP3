@@ -3,8 +3,8 @@
 Player::Player() {}
 
 Player::Player(Position initialPosition, Map *map, 
-	sf::Texture upImage, sf::Texture downImage,
-	sf::Texture leftImage, sf::Texture rightImage)
+	sf::Sprite upImage, sf::Sprite downImage,
+	sf::Sprite leftImage, sf::Sprite rightImage)
 {
 	_map = map;
 	_initialPosition = initialPosition;
@@ -63,6 +63,7 @@ void Player::moveUp()
 {
 	moveTo(_position._x, _position._y - 1);
 	_currentDirection = UP;
+	
 }
 
 void Player::moveDown()
@@ -99,7 +100,12 @@ void Player::notifyBombExploded()
 	_bombsInPlay--;
 }
 
-sf::Texture& Player::getImage()
+void Player::draw(sf::RenderTarget& target) const
 {
-	return _directionImages[_currentDirection];
+	_directionImages[_currentDirection].setPosition(_position._x, _position._y);
+	target.draw(_directionImages[_currentDirection]);
 }
+//sf::Sprite& Player::getImage()
+//{
+//	return _directionImages[_currentDirection];
+//}

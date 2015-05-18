@@ -18,17 +18,17 @@ private:
 	Map* _map;
 	int _power;
 	int _fuse;
-	sf::Texture *_image;
+	sf::Sprite *_image;
 
 	void explode();
 	void drawFireLine(function<int&(Position&)> dimension, int direction);
 
 public:
 	Bomb();
-	Bomb(sf::Texture* image, Player* player, int power, Map* map);
+	Bomb(sf::Sprite* image, Player* player, int power, Map* map);
 	~Bomb();
 
-	sf::Texture* getImage() const;
+	sf::Sprite* getImage() const;
 
 	//la fuse a brule
 	void tick();
@@ -37,5 +37,6 @@ public:
 
 	Position getPosition() const;
 
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 

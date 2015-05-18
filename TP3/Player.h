@@ -26,10 +26,10 @@ private:
 
 	Map	*_map;
 
-	sf::Texture _directionImages[4];
+	sf::Sprite _directionImages[4];
 	enum Direction _currentDirection;
 
-	sf::Texture _bombImage;
+	sf::Sprite _bombImage;
 	
 	int _lives;
 	int _speed;
@@ -44,8 +44,8 @@ public:
 	Player(); //Constructeur vide temporaire
 
 	Player(Position initialPosition, Map *map, 
-		sf::Texture upImage, sf::Texture downImage,
-		sf::Texture leftImage, sf::Texture rightImage);
+		sf::Sprite upImage, sf::Sprite downImage,
+		sf::Sprite leftImage, sf::Sprite rightImage);
 
 	~Player();
 
@@ -60,6 +60,7 @@ public:
 
 	void notifyBombExploded();
 
-	sf::Texture& getImage();
+	void draw(sf::RenderTarget& target) const;
+	//sf::Sprite& getImage();
 };
 

@@ -2,7 +2,7 @@
 #include "Fire.h"
 #include <SFML\Graphics.hpp>
 
-Bomb::Bomb(sf::Texture *image, Player* player, int power, Map* map)
+Bomb::Bomb(sf::Sprite *image, Player* player, int power, Map* map)
 {
 	_player = player;
 	_image = image;
@@ -15,7 +15,7 @@ Bomb::~Bomb()
 {
 }
 
-sf::Texture* Bomb::getImage() const
+sf::Sprite* Bomb::getImage() const
 {
 	return _image;
 }
@@ -85,4 +85,9 @@ void Bomb::explode()
 Position Bomb::getPosition() const
 {
 	return _position;
+}
+
+void Bomb::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+
 }
